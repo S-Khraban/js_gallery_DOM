@@ -3,14 +3,26 @@
 const gallery = document.querySelector('.gallery__list');
 const mainImg = document.getElementById('largeImg');
 
-gallery.addEventListener('click', (fact) => {
-  const item = fact.target.closest('.list-item__link');
+if (gallery && mainImg) {
+  gallery.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
 
-  if (!item) {
-    return null;
-  }
+    if (!link || !gallery.contains(link)) {
+      return;
+    }
 
-  fact.preventDefault();
+    e.preventDefault();
 
-  mainImg.src = item.href;
-});
+    const thumbImg = link.querySelector('img');
+
+    mainImg.setAttribute(
+      'alt',
+      thumbImg ? thumbImg.getAttribute('alt') || '' : '',
+    );
+
+    const href = link.getAttribute('href') || '';
+    const path = /^https?:\/\//i.test(href) ? new URL(href).pathname : href;
+
+    mainImg.setAttribute('src', path);
+  });
+}
