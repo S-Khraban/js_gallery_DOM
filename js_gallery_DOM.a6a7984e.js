@@ -1,0 +1,2 @@
+"use strict";var gallery=document.querySelector(".gallery__list"),mainImg=document.getElementById("largeImg");gallery&&mainImg&&gallery.addEventListener("click",function(t){var e=t.target.closest("a");if(e&&gallery.contains(e)){t.preventDefault();var r=e.querySelector("img");mainImg.setAttribute("alt",r&&r.getAttribute("alt")||"");var a=e.getAttribute("href")||"",l=/^https?:\/\//i.test(a)?new URL(a).pathname:a;mainImg.setAttribute("src",l)}});
+//# sourceMappingURL=js_gallery_DOM.a6a7984e.js.map
